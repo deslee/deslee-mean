@@ -94,6 +94,6 @@ cms.run(['$rootScope', '$location', '$window', function($rootScope, $location, $
 		});
 	}
 
-	animate();
+	//animate();
 
 }])
