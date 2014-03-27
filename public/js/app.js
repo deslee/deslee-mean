@@ -84,7 +84,7 @@ cms.run(['$rootScope', '$location', '$window', function($rootScope, $location, $
 
 	$('body').click(function(e) {
 		var targets = $(e.target).parents();
-		if (e.clientX > 200 && sidebar.sidebar('is open')) {
+		if (e.clientX > 200 && sidebar && sidebar.sidebar('is open')) {
 			if (targets.index($('button.navigation')) == -1) {
 				sidebar.sidebar('hide');
 			}
