@@ -1,9 +1,5 @@
 var	fs = require('fs'), // filesystem access
-	http = require('http'),
-	https = require('https'),
-	privateKey = fs.readFileSync('server.key', 'utf-8'),
-	certificate = fs.readFileSync('server.crt', 'utf-8'),
-	credentials = {key: privateKey, cert: certificate}; // server credentials
+	http = require('http');
 
 var express = require('express');
 var app = express();
@@ -18,7 +14,5 @@ app.use(function(req, res, next) {
 });
 
 httpServer = http.createServer(app),
-httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(8080);
-httpsServer.listen(8090);
+httpServer.listen(8000);
