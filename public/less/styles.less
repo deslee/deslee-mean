@@ -7,7 +7,6 @@
 @import 'semantic/elements/divider';
 @import 'semantic/collections/grid';
 @import 'semantic/modules/sidebar';
-@import 'nav';
 @import 'helpers';
 
 @darkred: #A33D47;
@@ -156,10 +155,6 @@ aside {
 		margin-top: 1em;
 		font-size: 1.7em;
 	}
-	.block {
-		margin: 0 auto;
-		max-width:300px
-	}
 }
 
 .face-container {
@@ -169,6 +164,7 @@ aside {
 img.face {
 	.border-radius(150px);
 	width: 150px;
+	max-width: 100%;
 }
 
 .ui.content > .column {
@@ -191,3 +187,6 @@ img.face {
 		}
 	}
 }
+
+
+@import 'nav';
