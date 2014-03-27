@@ -28,7 +28,7 @@ Model.prototype.trim = function(data) {
 ////
 Model.prototype.out = function(data, req) {
 	var m = this.trim(data);
-	if (req.query.html and m.text) {
+	if (req.query.html && m.text) {
 		m.text = markdown.toHTML(m.text);
 	}
 	if (this.processors.out) {
