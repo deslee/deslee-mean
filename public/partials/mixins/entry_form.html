@@ -1,6 +1,6 @@
-<form ng-submit="submit()">
-	<div><input ng-model="entry.title" type="text" placeholder="Title" /></div>
-	<div><textarea ng-model="entry.text" type="text" placeholder="Text"></textarea></div>
+<form ng-submit="submit()" class="ui form">
+	<div class="field"><input ng-model="entry.title" type="text" placeholder="Title" /></div>
+	<div class="field"><textarea ng-model="entry.text" type="text" placeholder="Text"></textarea></div>
 	<input type="date" ng-model="entry.date"> {{entry.date}}
 	<button type="button" ng-click="delete()">Delete entry</button><br />
 	<input type="checkbox" ng-model="entry.isPost"> Is post?
