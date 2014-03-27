@@ -43,7 +43,7 @@ app.controller('Login', ['$scope', '$location', 'API', function($scope, $locatio
 		API.login($scope.user.username, $scope.user.password, function(data) {
 			if (data.api_status === 'success') {
 				console.log("Successfully logged in.");
-				$location.path('/');
+				$location.path('/admin');
 			} else {
 				console.log('Failed to log in');
 			}
