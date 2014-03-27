@@ -3,10 +3,10 @@ var mongoose = require('mongoose');
 var markdown = require( "markdown" ).markdown
 mongoose.connect(config.mongo_url);
 
-var Model = function(name, fields, format) {
+var Model = function(name, fields, processors) {
 	this.fields = fields;
 	this.odm = mongoose.model(name, fields);
-	this.format = format;
+	this.processors = processors ? processors : {};
 }
 
 ////
@@ -20,9 +20,6 @@ Model.prototype.trim = function(data) {
 			m[key] = data[key];
 		}
     });
-    if (this.format) {
-    	this.format(m);
-    }
     return m;
 }
 ////
@@ -31,9 +28,11 @@ Model.prototype.trim = function(data) {
 ////
 Model.prototype.out = function(data, req) {
 	var m = this.trim(data);
-	console.log(req.query);
 	if (req.query.html) {
 		m.text = markdown.toHTML(m.text);
+	}
+	if (this.processors.out) {
+		m = this.processors.out(m);
 	}
 	return m;
 }
@@ -51,4 +50,12 @@ module.exports.Entry = new Model('Entry', {
 	text: String,
 	title: String,
 	date: Date,
+}, 
+{
+	out: function(entry) {
+		if (entry.date) {
+			entry.sort_order = entry.date.getTime();
+		}
+		return entry;
+	}
 });

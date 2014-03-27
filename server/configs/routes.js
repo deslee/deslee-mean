@@ -58,9 +58,22 @@ module.exports = function(app) {
 			if (err) {
 				return error(res, err);
 			}
-			return success(res, result.map(function(model) {
+
+			var output = result.map(function(model) {
 				return Model.out(model, req);
-			}));
+			});
+
+			output.sort(function(a, b) {
+				[a, b].forEach(function(e) {
+					if (!e.sort_order) {
+						e.sort_order = -1;
+					}
+				});
+				return b.sort_order - a.sort_order;
+			})
+
+			return success(res, output);
+			
 		});
 	});
 
