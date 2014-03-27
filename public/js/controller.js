@@ -26,11 +26,12 @@ app.controller('Entry', ['$scope', '$routeParams', 'API', '$sce', function($scop
 	});
 }])
 
-app.controller('Login', ['$scope', 'API', function($scope, API) {
+app.controller('Login', ['$scope', '$location', 'API', function($scope, $location, API) {
 	$scope.submit = function() {
 		API.login($scope.user.username, $scope.user.password, function(data) {
 			if (data.api_status === 'success') {
 				console.log("Successfully logged in.");
+				$location.path('/');
 			} else {
 				console.log('Failed to log in');
 			}
