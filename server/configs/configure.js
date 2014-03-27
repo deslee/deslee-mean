@@ -11,7 +11,6 @@ module.exports = function(app) {
 	console.log(path.join(__dirname, '../../public'))
 	app.use(lessMiddleware(path.join(__dirname, '../../public')));
 
-	app.use(express.logger());
 	app.use(express.static('../public/'));	// static sites
 	app.use(express.json());			// json parsing
 	app.use(express.urlencoded());		
@@ -23,8 +22,9 @@ module.exports = function(app) {
 	////
 	passport.use(
 	  new LocalStrategy(function(username, password, done) {
-	  	console.log(username + " " + password);
+	  	console.log("BEGIN THING");
 		if (username === secret.username && password === secret.pass) {
+			console.log('okay then.')
 			return done(null, {name: 'Desmond Lee'});
 		}
 		return done(null, false);

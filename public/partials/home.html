@@ -1,5 +1,6 @@
 <div ng-repeat="entry in entries">
-<article class="entry">
+<article class="entry" ng-if="entry.isPost">
 <h2><a href="{{entry.slug}}">{{entry.title}}</a> <time>{{entry.date | date:"MMM d yyyy"}}</time></h2>
 <section ng-bind-html="entry.text"></section>
+</article>
 </div>

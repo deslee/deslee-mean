@@ -15,8 +15,10 @@ cms.service('API', ['$http', '$window', function($http, $window) {
 		console.log(config);
 		var promise = $http(config);
 		promise.success(function(data, status, headers, config) {
+			console.log(data);
 			callback(data);
 		}).error(function(data, status, headers, config) {
+			console.log(data);
 			callback({api_status: 'error', data: data}); 
 		});
 	}

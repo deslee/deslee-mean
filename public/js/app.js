@@ -44,6 +44,10 @@ cms.config(['$routeProvider', '$locationProvider', '$httpProvider',
 		templateUrl: 'partials/mixins/login.html',
 		controller: 'Login',
 	})
+	.when('/admin', {
+		templateUrl: 'partials/admin.html',
+		controller: 'Admin',
+	})
 	.when('/test', {
 		templateUrl: 'partials/tester.html',
 		controller: 'Test',

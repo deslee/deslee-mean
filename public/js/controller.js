@@ -12,6 +12,17 @@ app.controller('Home', ['$scope', 'API', '$sce', function($scope, API, $sce) {
 	});
 }]);
 
+app.controller('Admin', ['$scope', 'API', '$sce', function($scope, API, $sce) {
+	API.get('entry', function(response) {
+		if (response.api_status === 'success') {
+			$scope.entries = response.data.map(function(entry) {
+				var e = entry;
+				return e;
+			});
+		}
+	});
+}]);
+
 app.controller('Entry', ['$scope', '$routeParams', 'API', '$sce', function($scope, $routeParams ,API, $sce) {
 	var slug = $routeParams.slug;
 	API.get('entry/' + slug + '?html=true', function(response) {
