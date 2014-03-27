@@ -50,6 +50,7 @@ module.exports.Entry = new Model('Entry', {
 	text: String,
 	title: String,
 	date: Date,
+	isPost: Boolean,
 }, 
 {
 	out: function(entry) {

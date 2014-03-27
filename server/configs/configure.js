@@ -23,6 +23,7 @@ module.exports = function(app) {
 	////
 	passport.use(
 	  new LocalStrategy(function(username, password, done) {
+	  	console.log(username + " " + password);
 		if (username === secret.username && password === secret.pass) {
 			return done(null, {name: 'Desmond Lee'});
 		}
