@@ -7,10 +7,31 @@
 @import 'semantic/collections/grid';
 @import 'semantic/modules/sidebar';
 @import 'nav';
+@import 'helpers';
 
 @darkred: #A33D47;
 
-@-webkit-keyframes slidein {
+@-webkit-keyframes backgroundmove {
+  from {
+    background-position-x: 100%;
+  }
+
+  to {
+    background-position-x: -100%;
+  }
+}
+
+@-moz-keyframes backgroundmove {
+  from {
+    background-position-x: 100%;
+  }
+
+  to {
+    background-position-x: -100%;
+  }
+}
+
+@keyframes backgroundmove {
   from {
     background-position-x: 100%;
   }
@@ -21,23 +42,7 @@
 }
 
 body {
-	-webkit-animation-duration: 40s;
-	-webkit-animation-name: slidein;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
-	-webkit-animation-timing-function: linear;
-}
-
-.box-shadow (@string) {
-	-webkit-box-shadow: @string;
-	-moz-box-shadow:    @string;
-	box-shadow:         @string;
-}
-
-.border-radius (@string) {
-	border-radius: @string;
-	-webkit-border-radius: @string;
-	-moz-border-radius: @string;
+	.animation(backgroundmove, 40s, 0, linear)
 }
 
 @font-face {
@@ -87,6 +92,7 @@ body {
 	font-family: "Open Sans";
 	background: url('/img/ricepaper_v3.png') fixed;
 	color: #3E3E3E;
+	overflow-y: scroll;
 }
 
 #container {
