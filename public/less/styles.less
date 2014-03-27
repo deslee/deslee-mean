@@ -95,6 +95,19 @@ html, body {
 	opacity: 1;
 }
 
+.content.ng-leave,  {
+  -webkit-transition:0.25s ease-out all;
+  transition:0.25s ease-out all;
+  position: relative; 
+  opacity: 1;
+  top: 0;
+}
+
+.content.ng-leave-active {
+	top: -25px;
+	opacity: 0;
+}
+
 body {
 	font-family: "Open Sans";
 	background: url('/img/ricepaper_v3.png') fixed;

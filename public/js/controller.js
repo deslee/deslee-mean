@@ -14,7 +14,6 @@ app.controller('Home', ['$scope', 'API', '$sce', function($scope, API, $sce) {
 
 app.controller('Admin', ['$scope', 'API', '$sce', function($scope, API, $sce) {
 	API.get('entry', function(response) {
-		console.log(response);
 		if (response.api_status === 'success') {
 			$scope.entries = response.data.map(function(entry) {
 				var e = entry;
@@ -33,7 +32,6 @@ app.controller('Entry', ['$scope', '$routeParams', 'API', '$sce', function($scop
 			$scope.entry.text = $sce.trustAsHtml(response.data.text);
 		}
 		else {
-			console.log(response);
 		}
 	});
 }])
@@ -45,7 +43,6 @@ app.controller('Login', ['$scope', '$location', 'API', function($scope, $locatio
 				console.log("Successfully logged in.");
 				$location.path('/admin');
 			} else {
-				console.log('Failed to log in');
 			}
 		});
 	}		
@@ -85,7 +82,6 @@ app.controller('UpdateEntry', ['$scope', '$location', '$routeParams', 'API', fun
 				$location.path('/' + slug);
 			}
 			else {
-				console.log(response);
 			}
 		}, true);
 	}
@@ -96,7 +92,6 @@ app.controller('UpdateEntry', ['$scope', '$location', '$routeParams', 'API', fun
 				$location.path('/');
 			}
 			else {
-				console.log(response);
 			}
 		}, true);
 	}

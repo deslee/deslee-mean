@@ -12,12 +12,21 @@ cms.service('API', ['$http', '$window', function($http, $window) {
 			url: (require_login ? self.api_auth_url : self.api_url) + path,
 			data: data,
 		}
+		console.log('sending:');
 		console.log(config);
 		var promise = $http(config);
 		promise.success(function(data, status, headers, config) {
-			console.log(data);
-			callback(data);
+			console.log('server response:');
+			if (data.api_status) {
+				console.log(data);
+				callback(data);
+			}
+			else {
+				console.log('\tgot unpredicted response:');
+				console.log(data);
+			}
 		}).error(function(data, status, headers, config) {
+			console.log('server error:');
 			console.log(data);
 			callback({api_status: 'error', data: data}); 
 		});
