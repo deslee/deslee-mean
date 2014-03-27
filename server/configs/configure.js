@@ -23,14 +23,14 @@ module.exports = function(app) {
 	////
 	passport.use(
 	  new LocalStrategy(function(username, password, done) {
-		if (username === 'desmond' && password === 'pass') {
+		if (username === secret.username && password === secret.pass) {
 			return done(null, {name: 'Desmond Lee'});
 		}
 		return done(null, false);
 	}));
 	
 	app.use(passport.initialize());		// initializes auth system
-	app.use(config.api_auth, expressJwt({secret: secret}));
+	app.use(config.api_auth, expressJwt({secret: secret.key}));
 
 	app.use(app.router); // allows custom middleware or something
 }

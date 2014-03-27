@@ -33,7 +33,7 @@ module.exports = function(app) {
 			if (!user) {
 				failure(res);
 			}
-			var token = jwt.sign(user, secret);
+			var token = jwt.sign(user, secret.key);
 			success(res, token);
 		})(req, res);
 	});
