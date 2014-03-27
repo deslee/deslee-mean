@@ -78,11 +78,7 @@ app.controller('UpdateEntry', ['$scope', '$location', '$routeParams', 'API', fun
 		var entry = $scope.entry;
 		entry.slug = slug;
 		if (!entry.isPost) {
-			console.log(entry.isPost);
 			entry.isPost = false;
-		}
-		else {
-			console.log(entry.isPost);
 		}
 		API.post(model + '/' + slug, entry, function(response) {
 			if (response.api_status === 'success') {

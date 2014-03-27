@@ -16,7 +16,7 @@ var Model = function(name, fields, processors) {
 Model.prototype.trim = function(data) {
     var m = {}, fields = this.fields
     Object.keys(fields).forEach(function(key) {
-    	if (data[key]) {
+    	if (data[key] !== undefined) {
 			m[key] = data[key];
 		}
     });
