@@ -2,6 +2,7 @@ var cms = angular.module('cms', [
 	'ngRoute',
 	'cmsControllers',
 	'cmsServices',
+	'ngAnimate',
 ]);
 
 var app_auth_url = '/admin';
@@ -93,6 +94,6 @@ cms.run(['$rootScope', '$location', '$window', function($rootScope, $location, $
 		});
 	}
 
-	animate();
+	//animate();
 
 }])

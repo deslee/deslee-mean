@@ -52,6 +52,19 @@ html, body {
 	font-size: 12px;
 }
 
+.content.ng-enter,  {
+  -webkit-transition:0.25s linear all;
+  transition:0.25s linear all;
+  position: relative; 
+  opacity: 0;
+  left: 100%;
+}
+
+.content.ng-enter-active {
+	left: 0;
+	opacity: 1;
+}
+
 body {
 	font-family: "Open Sans";
 	background: url('/img/ricepaper_v3.png') fixed;
