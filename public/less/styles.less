@@ -108,8 +108,16 @@ body {
 	}
 }
 
-a:link, a:hover, a:active, a:visited, nav .ui.menu .item {
-	color: @darkred
+a:link, a:active, a:visited, nav .ui.menu .item {
+	color: @darkred;
+	text-decoration: none;
+	border-bottom: 1px dashed fade(@darkred, 0%);
+	.transition (all 500ms);
+}
+a:hover {
+	color: @darkred;
+	border-bottom: 1px dashed fade(@darkred, 100%);
+	.transition (all 500ms);
 }
 
 
