@@ -1,0 +1,6 @@
+<form ng-submit="submit()" class="form">
+	<div class="form-group"><input class="form-control" ng-model="entry.title" type="text" placeholder="Title" /></div>
+	<div class="form-group"><textarea class="form-control" ng-model="entry.text" type="text" placeholder="Text"></textarea></div>
+	<input type="date" ng-model="entry.date"> {{entry.date}}
+	<input class="btn btn-primary" type="submit" value="Submit" />
+</form>

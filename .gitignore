@@ -1,0 +1,5 @@
+*.crt
+*.csr
+server.key
+secret.js
+npm-debug.log
