@@ -12,19 +12,20 @@
 
 @-webkit-keyframes slidein {
   from {
-    background-position-x: 100px;
+    background-position-x: 100%;
   }
 
   to {
-    background-position-x: 0px;
+    background-position-x: -100%;
   }
 }
 
 body {
-	-webkit-animation-duration: 3s;
+	-webkit-animation-duration: 40s;
 	-webkit-animation-name: slidein;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
 }
 
 .box-shadow (@string) {
@@ -89,7 +90,7 @@ body {
 }
 
 #container {
-	background: rgba(255,255,255,.5);
+	background: rgba(255,255,255,1);
 	padding: 0 1.5em;
 	min-height: 100%;
 	height: auto !important;
