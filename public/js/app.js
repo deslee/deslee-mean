@@ -34,12 +34,6 @@ cms.config(['$routeProvider', '$locationProvider', '$httpProvider',
 		templateUrl: 'partials/home.html',
 		controller: 'Home',
 	})
-	.when('/about', {
-		templateUrl: 'partials/about.html',
-	})
-	.when('/projects', {
-		templateUrl: 'partials/projects.html',
-	})
 	.when(app_login_url, {
 		templateUrl: 'partials/mixins/login.html',
 		controller: 'Login',
