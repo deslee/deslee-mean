@@ -17,6 +17,7 @@ app.controller('Entry', ['$scope', '$routeParams', 'API', '$sce', function($scop
 	API.get('entry/' + slug + '?html=true', function(response) {
 		if (response.api_status === 'success') {
 			$scope.entry = response.data;
+			$scope.logged_in = API.logged_in();
 			$scope.entry.text = $sce.trustAsHtml(response.data.text);
 		}
 		else {
@@ -63,9 +64,20 @@ app.controller('UpdateEntry', ['$scope', '$location', '$routeParams', 'API', fun
 	$scope.submit = function() {
 		var entry = $scope.entry;
 		entry.slug = slug;
-		API.post('update/' + model + '/' + slug, entry, function(response) {
+		API.post(model + '/' + slug, entry, function(response) {
 			if (response.api_status === 'success') {
 				$location.path('/' + slug);
+			}
+			else {
+				console.log(response);
+			}
+		}, true);
+	}
+
+	$scope.delete = function() {
+		API.delete(model + '/' + slug, function(response) {
+			if (response.api_status === 'success') {
+				$location.path('/');
 			}
 			else {
 				console.log(response);

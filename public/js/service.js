@@ -12,6 +12,7 @@ cms.service('API', ['$http', '$window', function($http, $window) {
 			url: (require_login ? self.api_auth_url : self.api_url) + path,
 			data: data,
 		}
+		console.log(config);
 		var promise = $http(config);
 		promise.success(function(data, status, headers, config) {
 			callback(data);
@@ -25,6 +26,9 @@ cms.service('API', ['$http', '$window', function($http, $window) {
 	}
 	self.post = function(path, data, callback, require_login) {
 		request('POST', path, data, callback, require_login);
+	}
+	self.delete = function(path, callback, require_login) {
+		self.post(path, {_method: "delete"}, callback, require_login);
 	}
 
 

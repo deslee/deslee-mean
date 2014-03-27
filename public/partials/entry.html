@@ -1,4 +1,7 @@
 <article class="entry">
 <h2>{{entry.title}} <time>{{entry.date | date:"MMM d yyyy"}}</time></h2>
 <section ng-bind-html="entry.text"></section>
+<div ng-if='logged_in'> 
+<a href="/admin/update/{{entry.slug}}">Update</a>
+</div>
 </article>

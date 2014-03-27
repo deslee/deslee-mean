@@ -86,7 +86,7 @@ module.exports = function(app) {
 		});
 	})
 
-	app.post(config.api_auth + '/update/:model/:slug', function(req, res) {
+	app.post(config.api_auth + '/:model/:slug', function(req, res) {
 		var modelName = req.params.model;
 		var slug = req.params.slug;
 		var Model = models[modelName[0].toUpperCase()+modelName.slice(1)];
@@ -108,6 +108,27 @@ module.exports = function(app) {
 				return success(res, Model.out(updated, req));
 			}
 		});
-		
-	})
+	});
+
+	app.del(config.api_auth + '/:model/:slug', function(req, res) {
+		var modelName = req.params.model;
+		var slug = req.params.slug;
+		var Model = models[modelName[0].toUpperCase()+modelName.slice(1)];
+
+		if (!Model) {
+			return failure(res, model_not_found);
+		}
+
+		Model.odm.findOneAndRemove({slug: slug}, {}, function(err, result) {
+			if (err) {
+				return error(res, err);
+			}
+			else if (!result) {
+				return failure(res);
+			}
+			else {
+				return success(res, Model.out(result, req));
+			}
+		});
+	});
 }

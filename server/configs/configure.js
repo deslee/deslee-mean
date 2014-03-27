@@ -11,6 +11,7 @@ module.exports = function(app) {
 	console.log(path.join(__dirname, '../../public'))
 	app.use(lessMiddleware(path.join(__dirname, '../../public')));
 
+	app.use(express.logger());
 	app.use(express.static('../public/'));	// static sites
 	app.use(express.json());			// json parsing
 	app.use(express.urlencoded());		
