@@ -10,6 +10,23 @@
 
 @darkred: #A33D47;
 
+@-webkit-keyframes slidein {
+  from {
+    background-position-x: 100px;
+  }
+
+  to {
+    background-position-x: 0px;
+  }
+}
+
+body {
+	-webkit-animation-duration: 3s;
+	-webkit-animation-name: slidein;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+}
+
 .box-shadow (@string) {
 	-webkit-box-shadow: @string;
 	-moz-box-shadow:    @string;
@@ -72,7 +89,7 @@ body {
 }
 
 #container {
-	background: rgb(255,255,255);
+	background: rgba(255,255,255,.5);
 	padding: 0 1.5em;
 	min-height: 100%;
 	height: auto !important;
