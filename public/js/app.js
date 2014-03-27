@@ -72,28 +72,19 @@ cms.run(['$rootScope', '$location', '$window', function($rootScope, $location, $
 		}
 	});
 
+	var sidebar;
 	$('.navigation.button').click(function(e) {
-		$('.ui.navigation.sidebar').sidebar('toggle');
+		sidebar = $('.ui.navigation.sidebar').sidebar('toggle');
+		e.stopPropagation();
 	})
 
-	var random = function(min,max)
-	{
-		return Math.floor(Math.random()*(max-min+1)+min);
-	}
-
-	var animate = function() {
-		var time = random(4000, 6000);
-		var oldx = Number($('body').css('background-position-x').slice(0,-1));
-		var oldy = Number($('body').css('background-position-y').slice(0,-1))
-		console.log('doing animation for ' + time + ' ms from ' + oldx + ', ' + oldy);
-		$('body').animate({
-			'background-position-x': oldx + random(-10,10) + '%',
-			'background-position-y': oldy + random(-10,10) + '%',
-		}, time, 'linear', function() {
-			animate()
-		});
-	}
-
-	//animate();
+	$('body').click(function(e) {
+		var targets = $(e.target).parents();
+		if (e.clientX > 200 && sidebar.sidebar('is open')) {
+			if (targets.index($('button.navigation')) == -1) {
+				sidebar.sidebar('hide');
+			}
+		}
+	});
 
 }])
