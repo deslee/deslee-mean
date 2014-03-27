@@ -59,7 +59,7 @@ module.exports = function(app) {
 				return error(res, err);
 			}
 			return success(res, result.map(function(model) {
-				return Model.trim(model);
+				return Model.out(model, req);
 			}));
 		});
 	});
@@ -81,7 +81,7 @@ module.exports = function(app) {
 				return failure(res);
 			}
 			else {
-				return success(res, Model.trim(result));
+				return success(res, Model.out(result, req));
 			}
 		});
 	})
@@ -95,14 +95,17 @@ module.exports = function(app) {
 			return failure(res, model_not_found);
 		}
 
-		var doc = Model.trim(req.body);
+		var doc = Model.in(req.body, req);
+		console.log(doc);
 		
 		Model.odm.findOneAndUpdate({slug: slug}, doc, {upsert: true}, function(err, updated) {
 			if (err) {
+				console.log('wat...');
+				console.log(err);
 				return error(res, err);
 			}
 			else {
-				return success(res, Model.trim(updated));
+				return success(res, Model.out(updated, req));
 			}
 		});
 		

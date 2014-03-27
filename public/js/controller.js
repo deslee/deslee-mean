@@ -1,7 +1,7 @@
 var app = angular.module('cmsControllers', []);
 
 app.controller('Home', ['$scope', 'API', '$sce', function($scope, API, $sce) {
-	API.get('entry', function(response) {
+	API.get('entry?html=true', function(response) {
 		if (response.api_status === 'success') {
 			$scope.entries = response.data.map(function(entry) {
 				var e = entry;
@@ -11,6 +11,19 @@ app.controller('Home', ['$scope', 'API', '$sce', function($scope, API, $sce) {
 		}
 	});
 }]);
+
+app.controller('Entry', ['$scope', '$routeParams', 'API', '$sce', function($scope, $routeParams ,API, $sce) {
+	var slug = $routeParams.slug;
+	API.get('entry/' + slug + '?html=true', function(response) {
+		if (response.api_status === 'success') {
+			$scope.entry = response.data;
+			$scope.entry.text = $sce.trustAsHtml(response.data.text);
+		}
+		else {
+			console.log(response);
+		}
+	});
+}])
 
 app.controller('Login', ['$scope', 'API', function($scope, API) {
 	$scope.submit = function() {
@@ -35,19 +48,6 @@ app.controller('Test', ['$scope', 'API', function($scope, API) {
 			}, true);
 		}
 	}
-}])
-
-app.controller('Entry', ['$scope', '$routeParams', 'API', '$sce', function($scope, $routeParams ,API, $sce) {
-	var slug = $routeParams.slug;
-	API.get('entry/' + slug, function(response) {
-		if (response.api_status === 'success') {
-			$scope.entry = response.data;
-			$scope.entry.text = $sce.trustAsHtml(response.data.text);
-		}
-		else {
-			console.log(response);
-		}
-	});
 }])
 
 app.controller('UpdateEntry', ['$scope', '$location', '$routeParams', 'API', function($scope, $location, $routeParams, API) {
