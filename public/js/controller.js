@@ -14,6 +14,7 @@ app.controller('Home', ['$scope', 'API', '$sce', function($scope, API, $sce) {
 
 app.controller('Admin', ['$scope', 'API', '$sce', function($scope, API, $sce) {
 	API.get('entry', function(response) {
+		console.log(response);
 		if (response.api_status === 'success') {
 			$scope.entries = response.data.map(function(entry) {
 				var e = entry;
